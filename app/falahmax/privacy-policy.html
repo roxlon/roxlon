@@ -1,145 +1,529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Privacy Policy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 20px;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    footer {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #666;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Falah Max App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a5fb4;
+            --secondary-color: #26a269;
+            --accent-color: #e5a50a;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #eaeaea;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #0d4a9c);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .main-content {
+            flex: 3;
+            min-width: 300px;
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-box {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 20px;
+        }
+
+        .nav-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .nav-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .nav-list i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-bg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+        }
+
+        .highlight-box {
+            background-color: var(--light-bg);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.2rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.2rem 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+        }
+
+        .data-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .feature-list {
+            list-style-type: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-list i {
+            color: var(--secondary-color);
+            margin-top: 5px;
+        }
+
+        .icon-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .nav-box {
+                position: static;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Privacy Policy</h1>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <i class="fas fa-mosque logo"></i>
+                <div>
+                    <h1>Falah Max App Privacy Policy</h1>
+                    <p class="subtitle">Transparent information about how we handle your data in our Islamic application</p>
+                </div>
+            </div>
+            <p class="last-updated">Last updated: April 2024</p>
+        </div>
+    </header>
 
-    <p>
-      This Privacy Policy explains how we collect, use, and protect information when you use our mobile application
-      (<strong>the App</strong>). By using the App, you agree to the practices described in this policy.
-    </p>
+    <div class="container">
+        <div class="content">
+            <aside class="sidebar">
+                <div class="nav-box">
+                    <h3 class="nav-title">Policy Sections</h3>
+                    <ul class="nav-list">
+                        <li><a href="#overview"><i class="fas fa-eye"></i> Overview</a></li>
+                        <li><a href="#notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+                        <li><a href="#location"><i class="fas fa-map-marker-alt"></i> Location Data</a></li>
+                        <li><a href="#permissions"><i class="fas fa-user-shield"></i> App Permissions</a></li>
+                        <li><a href="#data-collection"><i class="fas fa-database"></i> Data Collection</a></li>
+                        <li><a href="#third-party"><i class="fas fa-exchange-alt"></i> Third-Party Services</a></li>
+                        <li><a href="#future-changes"><i class="fas fa-calendar-alt"></i> Future Changes</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;"><i class="fas fa-info-circle"></i> Key Points</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> We don't collect personal FCM tokens</li>
+                        <li><i class="fas fa-check-circle"></i> Location is only for prayer times & Qibla</li>
+                        <li><i class="fas fa-check-circle"></i> No individual user tracking</li>
+                        <li><i class="fas fa-check-circle"></i> Transparent about future ads</li>
+                    </ul>
+                </div>
+            </aside>
 
-    <h2>Information We Collect</h2>
+            <main class="main-content">
+                <section id="overview" class="section">
+                    <h2 class="section-title"><i class="fas fa-eye"></i> Overview</h2>
+                    <p>Welcome to Falah Max, your comprehensive Islamic application for prayer times, Quran, Qibla direction, and more. This Privacy Policy explains how we handle information in our application.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Our Commitment:</strong> We are committed to protecting your privacy and being transparent about our data practices. We believe in minimizing data collection and only accessing what is necessary for app functionality.</p>
+                    </div>
+                    
+                    <p>Falah Max is designed to enhance your spiritual journey while respecting your privacy. We do not collect personal information for marketing purposes and we do not sell user data to third parties.</p>
+                </section>
 
-    <h3>1. Notifications (Firebase Cloud Messaging)</h3>
-    <p>
-      We use Firebase Cloud Messaging (FCM) to send important notifications such as:
-    </p>
-    <ul>
-      <li>Ramadan confirmation</li>
-      <li>Eid announcements</li>
-      <li>Important Islamic news and app updates</li>
-    </ul>
-    <p>
-      These notifications are sent as general broadcasts to all users.
-      We do <strong>not</strong> collect, store, or manage individual user FCM tokens manually.
-    </p>
+                <section id="notifications" class="section">
+                    <h2 class="section-title"><i class="fas fa-bell"></i> Notifications</h2>
+                    <p>Falah Max uses Firebase Cloud Messaging (FCM) to send important notifications to users. These include:</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-star"></i> Eid confirmation announcements</li>
+                        <li><i class="fas fa-moon"></i> Ramadhan commencement notifications</li>
+                        <li><i class="fas fa-newspaper"></i> Important Islamic news and updates</li>
+                        <li><i class="fas fa-sync-alt"></i> App update announcements</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-shield-alt"></i> Important Privacy Note</h4>
+                        <p><strong>We do not collect individual FCM tokens from users.</strong> Notifications are sent as broadcast messages to all users simultaneously. We cannot and do not track which specific users receive or interact with notifications.</p>
+                    </div>
+                </section>
 
-    <h3>2. Location Information</h3>
-    <p>
-      The App may request access to your device’s location solely for functional purposes, including:
-    </p>
-    <ul>
-      <li>Calculating accurate Athan (prayer) times based on your region</li>
-      <li>Determining Qibla direction</li>
-    </ul>
-    <p>
-      We do <strong>not</strong> collect, store, track, or share your location data.
-      All location usage happens locally on your device.
-    </p>
+                <section id="location" class="section">
+                    <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Location Data</h2>
+                    <p>Falah Max requests location access for specific, limited purposes only:</p>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Purpose</th>
+                                <th>How it's used</th>
+                                <th>Data Storage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Prayer Times</strong></td>
+                                <td>To calculate accurate prayer times for your specific location</td>
+                                <td>Not stored or transmitted</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Qibla Direction</strong></td>
+                                <td>To determine the direction of Kaaba from your current location</td>
+                                <td>Processed locally on device</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-lock"></i> Location Privacy Assurance</h4>
+                        <p><strong>We do not collect, store, or transmit your precise location data.</strong> Location processing happens locally on your device. The app only uses your location to calculate prayer times and Qibla direction in real-time. Once the calculation is complete, the location data is discarded.</p>
+                    </div>
+                    
+                    <p>Prayer time calculations are based on data from <strong>ACJU (All Ceylon Jamiyyathul Ulama)</strong>, ensuring accuracy for Sri Lankan Muslims while also supporting international calculation methods.</p>
+                </section>
 
-    <h3>3. Online Audio Content</h3>
-    <p>
-      The App allows users to play Surah (Qur’an recitations) streamed from online sources.
-      We do not collect personal data related to audio playback.
-    </p>
+                <section id="permissions" class="section">
+                    <h2 class="section-title"><i class="fas fa-user-shield"></i> App Permissions & Features</h2>
+                    
+                    <h3><span class="icon-badge"><i class="fas fa-volume-up"></i></span> Audio Playback</h3>
+                    <p>The app streams Quran recitations from online sources. We do not control or have access to your listening history through these services.</p>
+                    
+                    <h3><span class="icon-badge"><i class="fas fa-home"></i></span> Home Screen Widget</h3>
+                    <p>The widget displays prayer times without opening the app. An alarm service auto-refreshes widget data to ensure accurate timing.</p>
+                    
+                    <h3><span class="icon-badge"><i class="fas fa-adjust"></i></span> Theme Detection</h3>
+                    <p>The app detects your system theme (light/dark mode) to match your device's appearance. This is a local detection only - no theme preference data is collected.</p>
+                    
+                    <h3><span class="icon-badge"><i class="fas fa-vibrate"></i></span> Vibration</h3>
+                    <p>Vibration is used for tactile feedback in the Thasbeeh counter and for notifications. Vibration patterns are controlled locally on your device.</p>
+                </section>
 
-    <h3>4. Prayer Time Sources</h3>
-    <p>
-      Athan and prayer times are obtained from trusted Islamic sources, including
-      <a href="https://acju.lk" target="_blank" rel="noopener noreferrer">acju.lk</a>.
-    </p>
+                <section id="data-collection" class="section">
+                    <h2 class="section-title"><i class="fas fa-database"></i> Data Collection Summary</h2>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Data Type</th>
+                                <th>Collected</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Personal FCM Tokens</td>
+                                <td><span style="color: #e01b24;">No</span></td>
+                                <td>We send broadcast notifications only</td>
+                            </tr>
+                            <tr>
+                                <td>Location Data</td>
+                                <td><span style="color: #e01b24;">No</span></td>
+                                <td>Processed locally, not stored</td>
+                            </tr>
+                            <tr>
+                                <td>Personal Information</td>
+                                <td><span style="color: #e01b24;">No</span></td>
+                                <td>We don't require accounts or profiles</td>
+                            </tr>
+                            <tr>
+                                <td>Usage Analytics</td>
+                                <td><span style="color: #e01b24;">Minimal*</span></td>
+                                <td>Basic app performance only</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p><small>*We may use anonymous, aggregated analytics to understand app performance and crash reports, but this data cannot be traced back to individual users.</small></p>
+                </section>
 
-    <h3>5. Home Screen Widgets & Background Services</h3>
-    <p>
-      The App uses background alarm services to refresh home screen widgets so users can view Athan times
-      without opening the App. No personal data is collected through this feature.
-    </p>
+                <section id="third-party" class="section">
+                    <h2 class="section-title"><i class="fas fa-exchange-alt"></i> Third-Party Services</h2>
+                    <p>Falah Max integrates with the following third-party services:</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-cloud"></i> <strong>Firebase Cloud Messaging:</strong> For notification delivery (Google)</li>
+                        <li><i class="fas fa-clock"></i> <strong>ACJU Prayer Times:</strong> Prayer time calculation data source</li>
+                        <li><i class="fas fa-quran"></i> <strong>Online Quran Services:</strong> For streaming Quran recitations</li>
+                    </ul>
+                    
+                    <p>While we select reputable services, we encourage you to review their privacy policies as they govern data handling by these third parties.</p>
+                </section>
 
-    <h3>6. Device Features</h3>
-    <p>
-      The App may use certain device features to improve user experience, including:
-    </p>
-    <ul>
-      <li>System theme detection (light/dark mode)</li>
-      <li>Vibration for Tasbeeh counter feedback and notifications</li>
-    </ul>
-    <p>
-      These features do not involve collecting or storing personal data.
-    </p>
+                <section id="future-changes" class="section">
+                    <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Future Changes</h2>
+                    
+                    <h3><span class="icon-badge"><i class="fas fa-ad"></i></span> Advertising</h3>
+                    <p>To support ongoing development and maintenance, we may introduce advertisements in future versions. Any ads implemented will:</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Be clearly marked as advertisements</li>
+                        <li><i class="fas fa-check"></i> Respect Islamic principles and values</li>
+                        <li><i class="fas fa-check"></i> Not use personal data for targeting without consent</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Policy Updates</h4>
+                        <p>This privacy policy may be updated occasionally to reflect changes in our app or regulations. We will notify users of significant changes through in-app notifications. Continued use of Falah Max after changes constitutes acceptance of the updated policy.</p>
+                    </div>
+                </section>
 
-    <h2>Advertisements</h2>
-    <p>
-      Currently, the App does not display advertisements.
-      In the future, advertisements may be introduced as a source of income.
-      If ads are added, this Privacy Policy will be updated accordingly.
-    </p>
-
-    <h2>Data Sharing</h2>
-    <p>
-      We do not sell, trade, or share users’ personal information with third parties.
-    </p>
-
-    <h2>Children’s Privacy</h2>
-    <p>
-      The App is designed for general audiences and does not knowingly collect personal information from children.
-    </p>
-
-    <h2>Changes to This Policy</h2>
-    <p>
-      We may update this Privacy Policy from time to time.
-      Any changes will be reflected on this page with an updated effective date.
-    </p>
-
-    <h2>Contact Us</h2>
-    <p>
-      If you have any questions or concerns about this Privacy Policy, you may contact us at:
-    </p>
-    <p>
-      <strong>Email:</strong> your-email@example.com
-    </p>
+                <section id="contact" class="section">
+                    <h2 class="section-title"><i class="fas fa-envelope"></i> Contact Us</h2>
+                    <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Falah Max Development Team</strong></p>
+                        <p>We value your feedback and concerns about privacy. As a small development team focused on serving the Muslim community, we are committed to maintaining your trust.</p>
+                    </div>
+                    
+                    <p>For technical support or privacy inquiries, please use the contact information provided within the Falah Max application or on our official distribution platforms.</p>
+                </section>
+            </main>
+        </div>
+    </div>
 
     <footer>
-      <p>Effective date: February 3, 2026</p>
+        <div class="container">
+            <p>© 2024 Falah Max App. All rights reserved.</p>
+            <p>This privacy policy applies to the Falah Max application across all supported platforms and versions.</p>
+            
+            <div class="contact-info">
+                <a href="#"><i class="fas fa-globe"></i> App Website</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Support</a>
+                <a href="#"><i class="fas fa-star"></i> Rate Our App</a>
+            </div>
+        </div>
     </footer>
-  </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-list a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Highlight current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-list a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                    link.style.backgroundColor = 'var(--light-bg)';
+                    link.style.color = 'var(--primary-color)';
+                }
+            });
+        });
+        
+        // Update the "last updated" date automatically
+        const currentDate = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.querySelector('.last-updated').textContent = `Last updated: ${currentDate.toLocaleDateString('en-US', options)}`;
+    </script>
 </body>
 </html>
