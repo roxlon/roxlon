@@ -409,6 +409,35 @@
       border-radius: 60px;
       border: 1px solid #eef3fa;
     }
+
+    .autocomplete-list {
+      position: absolute;
+      background: white;
+      border: 1px solid #E2EAF1;
+      border-radius: 24px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 2200;
+      width: 100%;
+      top: 48px;
+      left: 0;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .autocomplete-item {
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #F0F4F9;
+      color: #292929;
+      background-color: white;
+    }
+
+    .autocomplete-item:hover {
+      background: #EEF7F1;
+    }
+
+    
     .ingredient-name {
       flex: 2;
       min-width: 120px;
@@ -513,19 +542,7 @@
       }
     }
 
-    .autocomplete-list {
-      position: absolute;
-      background: white;
-      border: 1px solid #e2eaf1;
-      border-radius: 20px;
-      max-height: 180px;
-      overflow-y: auto;
-      z-index: 2200;
-      width: 100%;
-      top: 48px;
-      left: 0;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-    }
+    
 
     canvas {
       max-height: 260px;
