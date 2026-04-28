@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>TastyBuddy Studio • Ultra Det AI Chef</title>
+  <title>TastyBuddy Studio • AI Chef</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -88,14 +88,14 @@
 </head>
 <body>
 <div class="dashboard-container">
-  <div class="admin-header"><h1>TastyBuddy Studio</h1><div class="badge">🤖 Ultra-Detail AI Chef • 50+ steps friendly</div></div>
+  <div class="admin-header"><h1>TastyBuddy Studio</h1><div class="badge">🤖 AI Chef </div></div>
 
   <!-- AI RECIPE GENERATOR PANEL -->
   <div class="ai-panel">
-    <div class="ai-header"><h3>✨ AI Ultra Method Chef (Gemini)</h3><span style="font-size:0.7rem; background:#fff0e0; padding:4px 12px; border-radius:60px;">super detailed instructions — unlimited steps</span></div>
+    <div class="ai-header"><h3>✨ AI Chef</h3><span style="font-size:0.7rem; background:#fff0e0; padding:4px 12px; border-radius:60px;">super detailed instructions — unlimited steps</span></div>
     <div class="ai-input-group">
       <input type="text" id="aiTopicInput" placeholder="e.g., creamy garlic mushroom pasta, authentic biryani, vegan ramen broth, tiramisu classic ...">
-      <button class="ai-generate-btn" id="aiGenerateBtn"><span>🤖</span> Generate Ultra Recipe</button>
+      <button class="ai-generate-btn" id="aiGenerateBtn"><span>🤖</span> Generate professional Recipe</button>
     </div>
     <div id="aiResultContainer" style="display: none;" class="ai-result"></div>
   </div>
@@ -116,7 +116,7 @@
 
 <div id="recipeModal" class="modal-overlay"><div class="modal"><h3 id="modalTitle">📝 Recipe Editor</h3><form id="recipeForm"><input type="hidden" id="recipeId"><div class="form-grid"><div class="form-group"><label>Title *</label><input type="text" id="title" required></div><div class="form-group"><label>Image URL</label><input type="url" id="imageUrl"></div><div class="form-group"><label>Cuisine</label><select id="cuisine"><option>Italian</option><option>Mediterranean</option><option>American</option><option>Indian</option><option>Mexican</option><option>Asian</option><option>Japanese</option><option>Sri Lankan</option><option>other</option></select></div><div class="form-group"><label>Difficulty</label><select id="difficulty"><option>Easy</option><option>Medium</option><option>Hard</option></select></div><div class="form-group"><label>Diet</label><select id="diet"><option>All Diets</option><option>Vegetarian</option><option>Vegan</option><option>Gluten-Free</option></select></div><div class="form-group"><label>Cook Time</label><input type="text" id="cookTime" value="30 min"></div><div class="form-group"><label>Prep Time</label><input type="text" id="prepTime"></div><div class="form-group"><label>Servings</label><input type="number" id="servings" value="4"></div><div class="form-group full-width"><label>⭐ RATING</label><div class="rating-enhanced"><div class="star-rating" id="starRatingWidget"><span data-value="1">☆</span><span data-value="2">☆</span><span data-value="3">☆</span><span data-value="4">☆</span><span data-value="5">☆</span></div><div class="rating-controls"><input type="range" id="ratingSlider" min="0" max="5" step="0.1" value="0"><input type="number" id="ratingNumberInput" step="0.1" min="0" max="5" value="0"><span id="ratingValueDisplay">0.0 ★</span></div><input type="hidden" id="ratingValue" value="0"></div></div><div class="form-group full-width"><label>Description</label><textarea id="description" rows="3"></textarea></div><div class="form-group"><label>Semantic Label</label><input type="text" id="semanticLabel"></div><div class="form-group"><label>Tag</label><select id="tag"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snacks</option><option>Desserts</option></select></div></div>
 <div class="section-card"><div class="section-title">🥕 Ingredients</div><div id="ingredientsListContainer"></div><button type="button" class="add-btn" id="addIngredientBtn">+ Add ingredient</button></div>
-<div class="section-card"><div class="section-title">📝 INSTRUCTIONS (Ultra detailed, supports 100+ steps)</div><ul id="instructionsSortableList" class="instructions-list"></ul><button type="button" class="add-instruction-btn" id="addInstructionBtn">+ Add new step</button></div>
+<div class="section-card"><div class="section-title">📝 INSTRUCTIONS </div><ul id="instructionsSortableList" class="instructions-list"></ul><button type="button" class="add-instruction-btn" id="addInstructionBtn">+ Add new step</button></div>
 <div class="modal-buttons"><button type="button" class="btn" id="closeModalBtn">Cancel</button><button type="submit" class="btn btn-primary">💾 Save Recipe</button></div></form></div></div>
 
 <script type="module">
@@ -220,7 +220,7 @@ IMPORTANT: instructions array MUST contain between 15 and 45 items. each 'descri
     renderInstructionsUI();
     
     const stepsCount = currentInstructions.length;
-    aiResultDiv.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;"><strong>✅ AI Ultra Recipe: "${escapeHtml(recipeData.title)}"</strong><span style="background:#e9ecef; padding:4px 12px; border-radius:60px;">${stepsCount} detailed steps</span><button type="button" id="closeAiPreview" class="btn" style="background:#f0f0f0;">✖ Hide</button></div>
+    aiResultDiv.innerHTML = `<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;"><strong>✅ AI Recipe: "${escapeHtml(recipeData.title)}"</strong><span style="background:#e9ecef; padding:4px 12px; border-radius:60px;">${stepsCount} detailed steps</span><button type="button" id="closeAiPreview" class="btn" style="background:#f0f0f0;">✖ Hide</button></div>
     <p style="margin-top:12px;">🧑‍🍳 This recipe includes <strong>${stepsCount} intensive instructions</strong> — each with pro tips. Review all steps below, you can add even more manually if needed. Ready to save!</p>`;
     document.getElementById('closeAiPreview')?.addEventListener('click', () => { aiResultDiv.style.display = 'none'; });
     showToast(`✨ AI masterpiece generated: ${stepsCount} crystal-clear instructions!`);
@@ -347,7 +347,7 @@ IMPORTANT: instructions array MUST contain between 15 and 45 items. each 'descri
         await supabase.from('instructions').delete().eq('recipe_id', finalId);
         if(currentInstructions.length) await supabase.from('instructions').insert(currentInstructions.map((inst,idx)=>({ recipe_id: finalId, step_number: idx+1, title: inst.title||`Step ${idx+1}`, description: inst.description||'', tip: inst.tip||'' })));
       }
-      showToast("✅ Ultra recipe saved");
+      showToast("✅ recipe saved");
       closeModal(); loadRecipes(document.getElementById('recipeSearch').value); fetchStats(); await loadIngredientsMaster();
     } catch(err) { showToast("Error: "+err.message, true); }
   }
