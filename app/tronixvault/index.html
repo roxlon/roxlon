@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradingPro - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading" class="loading-screen">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen hidden">
+            <div class="login-container">
+                <div class="logo-section">
+                    <h1 class="logo">Trading<span>Pro</span></h1>
+                    <p class="tagline">Professional Trading Platform</p>
+                </div>
+                <button id="google-login" class="google-btn">
+                    <img src="https://www.google.com/favicon.ico" alt="Google">
+                    Sign in with Google
+                </button>
+            </div>
+        </div>
+
+        <!-- Onboarding Screen -->
+        <div id="onboarding-screen" class="screen hidden">
+            <div class="onboarding-container">
+                <h2>Complete Your Profile</h2>
+                <form id="onboarding-form">
+                    <div class="form-group">
+                        <label>WhatsApp Number *</label>
+                        <input type="tel" id="whatsapp" placeholder="+91 98765 43210" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Referral Code (Optional)</label>
+                        <input type="text" id="referral-code" placeholder="Enter referral code">
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="terms" required>
+                            I accept the <a href="#" onclick="showTerms()">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="privacy" required>
+                            I accept the <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Complete Setup</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div id="dashboard" class="screen hidden">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1 class="logo-small">Trading<span>Pro</span></h1>
+                </div>
+                <div class="header-right">
+                    <button id="refresh-btn" class="icon-btn">🔄</button>
+                    <div class="user-menu">
+                        <span id="user-email"></span>
+                        <button id="logout-btn" class="logout-btn">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="dashboard-content">
+                <!-- Wallet Card -->
+                <div class="card wallet-card glass-effect">
+                    <div class="card-header">
+                        <h3>Wallet Balance</h3>
+                        <button id="copy-referral" class="icon-btn" title="Copy Referral Code">📋</button>
+                    </div>
+                    <div class="balance-amount">Rs.<span id="balance">0.00</span></div>
+                    <div class="wallet-actions">
+                        <button id="deposit-btn" class="action-btn primary">Deposit</button>
+                        <button id="withdraw-btn" class="action-btn secondary" disabled>Withdraw</button>
+                    </div>
+                    <div id="withdrawal-status" class="status-badge"></div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card glass-effect">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-value" id="total-trades">0</div>
+                        <div class="stat-label">Total Trades</div>
+                    </div>
+                    <div class="stat-card glass-effect profit">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-value" id="total-profit">Rs.0</div>
+                        <div class="stat-label">Total Profit</div>
+                    </div>
+                    <div class="stat-card glass-effect loss">
+                        <div class="stat-icon">📉</div>
+                        <div class="stat-value" id="total-loss">Rs.0</div>
+                        <div class="stat-label">Total Loss</div>
+                    </div>
+                    <div class="stat-card glass-effect referral">
+                        <div class="stat-icon">🎁</div>
+                        <div class="stat-value" id="referral-earnings">Rs.0</div>
+                        <div class="stat-label">Referral Earnings</div>
+                    </div>
+                </div>
+
+                <!-- Zoom Meeting Card -->
+                <div class="card meeting-card glass-effect">
+                    <h3>Live Trading Session</h3>
+                    <div id="meeting-status">
+                        <p class="no-session">Next session not scheduled</p>
+                    </div>
+                    <div id="meeting-active" class="hidden">
+                        <button id="join-meeting" class="action-btn primary">Join Meeting</button>
+                        <p class="meeting-time" id="meeting-time"></p>
+                    </div>
+                </div>
+
+                <!-- Referral Section -->
+                <div class="card referral-card glass-effect">
+                    <h3>Your Referral Code</h3>
+                    <div class="referral-code-display">
+                        <span id="referral-code-text">------</span>
+                        <button id="copy-code-btn" class="copy-btn">Copy</button>
+                    </div>
+                    <button id="share-referral" class="action-btn secondary">Share Referral Link</button>
+                </div>
+
+                <!-- Recent Trades -->
+                <div class="card trades-card glass-effect">
+                    <h3>Recent Trades</h3>
+                    <div id="trades-list" class="trades-list">
+                        <p class="no-data">No trades yet</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Deposit Modal -->
+        <div id="deposit-modal" class="modal hidden">
+            <div class="modal-content glass-effect">
+                <span class="close-modal">&times;</span>
+                <h2>Deposit Funds</h2>
+                <div class="bank-details">
+                    <h4>Bank Details</h4>
+                    <p><strong>Bank:</strong> HDFC Bank</p>
+                    <p><strong>Account:</strong> 1234567890</p>
+                    <p><strong>IFSC:</strong> HDFC0001234</p>
+                    <p><strong>Name:</strong> TradingPro Solutions</p>
+                </div>
+                <form id="deposit-form">
+                    <div class="form-group">
+                        <label>Amount (Min: Rs.3,500)</label>
+                        <input type="number" id="deposit-amount" min="3500" required>
+                        <small>Rs.280 processing fee applies</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Transaction ID</label>
+                        <input type="text" id="transaction-id" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Receipt</label>
+                        <input type="file" id="receipt-upload" accept="image/*,.pdf" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Deposit</button>
+                </form>
+                <p class="notice">⏱️ Verification may take up to 24 hours</p>
+            </div>
+        </div>
+
+        <!-- Withdrawal Modal -->
+        <div id="withdraw-modal" class="modal hidden">
+            <div class="modal-content glass-effect">
+                <span class="close-modal">&times;</span>
+                <h2>Withdraw Funds</h2>
+                <form id="withdraw-form">
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" id="withdraw-amount" required>
+                        <small>Available: Rs.<span id="available-balance">0</span></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Bank Name</label>
+                        <input type="text" id="bank-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Account Number</label>
+                        <input type="text" id="account-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>IFSC Code</label>
+                        <input type="text" id="ifsc-code" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Account Holder Name</label>
+                        <input type="text" id="account-holder" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Request Withdrawal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // ---------- SUPABASE INIT (replace with your project URL & anon key) ----------
+       import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    const SUPABASE_URL = "https://axublajjoksqkoxvcopv.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4dWJsYWpqb2tzcWtveHZjb3B2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg3NTA1ODYsImV4cCI6MjA5NDMyNjU4Nn0.LAGgi5y--WhjdHvmHmk4PuKFmdSo8rRRBX6p6B6OyWk";
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// Bank details for deposits
+const BANK_DETAILS = {
+    bankName: 'HDFC Bank',
+    accountNumber: '1234567890',
+    ifscCode: 'HDFC0001234',
+    accountName: 'TradingPro Solutions'
+};
+    
+    // ============================================
+// GLOBAL STATE
+// ============================================
+let currentUser = null;
+let userProfile = null;
+
+// ============================================
+// INITIALIZATION
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    initApp();
+});
+
+async function initApp() {
+    showLoading(true);
+    
+    // Check for existing session
+    const { data: { session }, error } = await supabase.auth.getSession();
+    
+    if (session) {
+        currentUser = session.user;
+        await handleAuthenticatedUser();
+    } else {
+        showScreen('login-screen');
+    }
+    
+    showLoading(false);
+    
+    // Setup auth state listener
+    supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event === 'SIGNED_IN') {
+            currentUser = session.user;
+            await handleAuthenticatedUser();
+        } else if (event === 'SIGNED_OUT') {
+            currentUser = null;
+            userProfile = null;
+            showScreen('login-screen');
+        }
+    });
+    
+    // Setup event listeners
+    setupEventListeners();
+}
+
+// ============================================
+// AUTHENTICATION
+// ============================================
+async function handleAuthenticatedUser() {
+    try {
+        // Fetch user profile
+        const { data: profile, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', currentUser.id)
+            .single();
+        
+        if (error) {
+            console.error('Error fetching profile:', error);
+            
+            // If profile doesn't exist, create it manually
+            if (error.code === 'PGRST116') {
+                console.log('Profile not found, creating one...');
+                
+                // Generate referral code
+                const referralCode = generateReferralCode();
+                
+                const { error: insertError } = await supabase
+                    .from('profiles')
+                    .insert({
+                        id: currentUser.id,
+                        referral_code: referralCode
+                    });
+                
+                if (insertError) {
+                    console.error('Error creating profile:', insertError);
+                    await supabase.auth.signOut();
+                    return;
+                }
+                
+                // Reload the page to start fresh
+                window.location.reload();
+                return;
+            }
+            
+            await supabase.auth.signOut();
+            return;
+        }
+        
+        userProfile = profile;
+        
+        if (!profile.onboarding_completed) {
+            showScreen('onboarding-screen');
+        } else if (profile.is_banned) {
+            alert('Your account has been banned. Please contact support.');
+            await supabase.auth.signOut();
+        } else {
+            showScreen('dashboard');
+            await loadDashboard();
+        }
+    } catch (err) {
+        console.error('Unexpected error:', err);
+        alert('An error occurred. Please try again.');
+        await supabase.auth.signOut();
+    }
+}
+
+// Helper function to generate referral code (client-side fallback)
+function generateReferralCode() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let i = 0; i < 8; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+}
+
+async function signInWithGoogle() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: window.location.origin
+        }
+    });
+    
+    if (error) {
+        alert('Error signing in: ' + error.message);
+    }
+}
+
+// ============================================
+// ONBOARDING
+// ============================================
+async function completeOnboarding(event) {
+    event.preventDefault();
+    
+    const whatsapp = document.getElementById('whatsapp').value;
+    const referralCode = document.getElementById('referral-code').value.trim();
+    const terms = document.getElementById('terms').checked;
+    const privacy = document.getElementById('privacy').checked;
+    
+    if (!whatsapp || !terms || !privacy) {
+        alert('Please fill all required fields');
+        return;
+    }
+    
+    // Validate WhatsApp number format
+    if (!/^\+?[\d\s-]{10,}$/.test(whatsapp)) {
+        alert('Please enter a valid WhatsApp number');
+        return;
+    }
+    
+    const updates = {
+        whatsapp_number: whatsapp,
+        terms_accepted: terms,
+        privacy_accepted: privacy,
+        onboarding_completed: true
+    };
+    
+    // Handle referral code if provided
+    // Handle referral code if provided
+// Handle referral code if provided
+if (referralCode && referralCode.length > 0) {
+    try {
+        const cleanCode = referralCode.replace(/\s/g, '').toUpperCase();
+        console.log('Looking for referral code:', cleanCode);
+        
+        // Use the RPC function that bypasses RLS
+        const { data: referrers, error } = await supabase
+            .rpc('validate_referral_code', {
+                code_to_check: cleanCode
+            });
+        
+        console.log('Query result:', { referrers, error });
+        
+        if (error) {
+            console.error('Error checking referral:', error);
+            alert('Error validating referral code. Please try again.');
+            return;
+        }
+        
+        if (!referrers || referrers.length === 0) {
+            alert('Referral code not found. Please check the code or leave it empty.');
+            return;
+        }
+        
+        const referrer = referrers[0];
+        console.log('Found referrer:', referrer);
+        
+        if (referrer.referrer_id === currentUser.id) {
+            alert('You cannot use your own referral code!');
+            return;
+        }
+        
+        updates.referred_by = referrer.referrer_id;
+        console.log('Referral code valid, setting referred_by:', updates.referred_by);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error validating referral code. Please try again.');
+        return;
+    }
+}
+    
+    try {
+        const { error } = await supabase
+            .from('profiles')
+            .update(updates)
+            .eq('id', currentUser.id);
+        
+        if (error) {
+            console.error('Error updating profile:', error);
+            alert('Error completing onboarding: ' + error.message);
+            return;
+        }
+        
+        // Reload to dashboard
+        await handleAuthenticatedUser();
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
+}
+
+// ============================================
+// DASHBOARD
+// ============================================
+async function loadDashboard() {
+    if (!userProfile) return;
+    
+    // Update UI
+    document.getElementById('user-email').textContent = currentUser.email;
+    document.getElementById('balance').textContent = formatCurrency(userProfile.wallet_balance);
+    document.getElementById('total-trades').textContent = userProfile.total_trades || 0;
+    document.getElementById('total-profit').textContent = 'Rs.' + formatCurrency(userProfile.total_profit);
+    document.getElementById('total-loss').textContent = 'Rs.' + formatCurrency(userProfile.total_loss);
+    document.getElementById('referral-earnings').textContent = 'Rs.' + formatCurrency(userProfile.referral_earnings);
+    document.getElementById('referral-code-text').textContent = userProfile.referral_code;
+    
+    // Check withdrawal eligibility
+    await checkWithdrawalEligibility();
+    
+    // Load meeting info
+    await loadMeetingInfo();
+    
+    // Load recent trades
+    await loadRecentTrades();
+}
+
+async function checkWithdrawalEligibility() {
+    const { data, error } = await supabase.rpc('check_withdrawal_eligibility', {
+        p_user_id: currentUser.id
+    });
+    
+    const withdrawBtn = document.getElementById('withdraw-btn');
+    const statusBadge = document.getElementById('withdrawal-status');
+    
+    if (data && data.eligible) {
+        withdrawBtn.disabled = false;
+        statusBadge.className = 'status-badge status-eligible';
+        statusBadge.textContent = '✅ Eligible for withdrawal';
+    } else {
+        withdrawBtn.disabled = true;
+        statusBadge.className = 'status-badge status-not-eligible';
+        statusBadge.textContent = `❌ Not eligible to Withdraw (Min Rs.2,000 traded required)`;
+    }
+}
+
+async function loadMeetingInfo() {
+    const { data: meetings, error } = await supabase
+        .from('zoom_meetings')
+        .select('*')
+        .eq('is_active', true)
+        .gte('end_time', new Date().toISOString())
+        .order('start_time', { ascending: true })
+        .limit(1);
+    
+    const meetingStatus = document.getElementById('meeting-status');
+    const meetingActive = document.getElementById('meeting-active');
+    
+    if (meetings && meetings.length > 0) {
+        const meeting = meetings[0];
+        meetingStatus.classList.add('hidden');
+        meetingActive.classList.remove('hidden');
+        
+        document.getElementById('meeting-time').textContent = 
+            `Session: ${new Date(meeting.start_time).toLocaleString()} - ${new Date(meeting.end_time).toLocaleString()}`;
+        
+        document.getElementById('join-meeting').onclick = () => {
+            window.open(meeting.meeting_link, '_blank');
+        };
+    } else {
+        meetingStatus.classList.remove('hidden');
+        meetingActive.classList.add('hidden');
+    }
+}
+
+async function loadRecentTrades() {
+    const { data: trades, error } = await supabase
+        .from('trades')
+        .select('*')
+        .eq('user_id', currentUser.id)
+        .order('created_at', { ascending: false })
+        .limit(10);
+    
+    const tradesList = document.getElementById('trades-list');
+    
+    if (!trades || trades.length === 0) {
+        tradesList.innerHTML = '<p class="no-data">No trades yet</p>';
+        return;
+    }
+    
+    tradesList.innerHTML = trades.map(trade => `
+        <div class="trade-item">
+            <div>
+                <span class="trade-type ${trade.trade_type === 'win' ? 'trade-win' : 'trade-loss'}">
+                    ${trade.trade_type.toUpperCase()}
+                </span>
+            </div>
+            <div>Amount: Rs.${formatCurrency(trade.trade_amount)}</div>
+            <div>${new Date(trade.created_at).toLocaleDateString()}</div>
+        </div>
+    `).join('');
+}
+
+// ============================================
+// DEPOSIT SYSTEM
+// ============================================
+async function submitDeposit(event) {
+    event.preventDefault();
+    
+    const amount = parseFloat(document.getElementById('deposit-amount').value);
+    const transactionId = document.getElementById('transaction-id').value;
+    const receiptFile = document.getElementById('receipt-upload').files[0];
+    
+    if (!amount || amount < 3500) {
+        alert('Minimum deposit amount is Rs.3,500');
+        return;
+    }
+    
+    if (!transactionId || !receiptFile) {
+        alert('Please fill all fields');
+        return;
+    }
+    
+    // Upload receipt
+    const fileName = `${currentUser.id}/${Date.now()}_${receiptFile.name}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('receipts')
+        .upload(fileName, receiptFile);
+    
+    if (uploadError) {
+        alert('Error uploading receipt: ' + uploadError.message);
+        return;
+    }
+    
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+        .from('receipts')
+        .getPublicUrl(fileName);
+    
+    // Create deposit record
+    const { error: depositError } = await supabase
+        .from('deposits')
+        .insert({
+            user_id: currentUser.id,
+            amount: amount,
+            transaction_id: transactionId,
+            receipt_url: publicUrl
+        });
+    
+    if (depositError) {
+        alert('Error submitting deposit: ' + depositError.message);
+        return;
+    }
+    
+    alert('Deposit submitted successfully! Verification may take up to 24 hours.');
+    closeModal('deposit-modal');
+    document.getElementById('deposit-form').reset();
+}
+
+// ============================================
+// WITHDRAWAL SYSTEM
+// ============================================
+async function submitWithdrawal(event) {
+    event.preventDefault();
+    
+    const amount = parseFloat(document.getElementById('withdraw-amount').value);
+    const bankName = document.getElementById('bank-name').value;
+    const accountNumber = document.getElementById('account-number').value;
+    const ifscCode = document.getElementById('ifsc-code').value;
+    const accountHolder = document.getElementById('account-holder').value;
+    
+    if (!amount || amount <= 0) {
+        alert('Please enter a valid amount');
+        return;
+    }
+    
+    if (amount > userProfile.wallet_balance) {
+        alert('Insufficient balance');
+        return;
+    }
+    
+    const { error } = await supabase
+        .from('withdrawals')
+        .insert({
+            user_id: currentUser.id,
+            amount: amount,
+            bank_name: bankName,
+            account_number: accountNumber,
+            ifsc_code: ifscCode,
+            account_holder_name: accountHolder
+        });
+    
+    if (error) {
+        alert('Error submitting withdrawal: ' + error.message);
+        return;
+    }
+    
+    alert('Withdrawal request submitted successfully!');
+    closeModal('withdraw-modal');
+    document.getElementById('withdraw-form').reset();
+}
+
+// ============================================
+// REFERRAL SYSTEM
+// ============================================
+function copyReferralCode() {
+    navigator.clipboard.writeText(userProfile.referral_code).then(() => {
+        alert('Referral code copied!');
+    });
+}
+
+async function shareReferral() {
+    const shareData = {
+        title: 'Join TradingPro',
+        text: `Join TradingPro using my referral code: ${userProfile.referral_code}`,
+        url: window.location.origin
+    };
+    
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            console.log('Error sharing:', err);
+        }
+    } else {
+        // Fallback: copy to clipboard
+        await navigator.clipboard.writeText(
+            `Join TradingPro: ${window.location.origin}\nReferral Code: ${userProfile.referral_code}`
+        );
+        alert('Share link copied to clipboard!');
+    }
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.add('hidden');
+    });
+    document.getElementById(screenId).classList.remove('hidden');
+}
+
+function showLoading(show) {
+    document.getElementById('loading').classList.toggle('hidden', !show);
+}
+
+function showModal(modalId) {
+    document.getElementById(modalId).classList.remove('hidden');
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+}
+
+function formatCurrency(amount) {
+    return (amount || 0).toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+function setupEventListeners() {
+    // Login
+    document.getElementById('google-login').addEventListener('click', signInWithGoogle);
+    
+    // Onboarding
+    document.getElementById('onboarding-form').addEventListener('submit', completeOnboarding);
+    
+    // Dashboard
+    document.getElementById('refresh-btn').addEventListener('click', loadDashboard);
+    document.getElementById('logout-btn').addEventListener('click', () => supabase.auth.signOut());
+    document.getElementById('copy-referral').addEventListener('click', copyReferralCode);
+    document.getElementById('copy-code-btn').addEventListener('click', copyReferralCode);
+    document.getElementById('share-referral').addEventListener('click', shareReferral);
+    
+    // Deposit
+    document.getElementById('deposit-btn').addEventListener('click', () => showModal('deposit-modal'));
+    document.getElementById('deposit-form').addEventListener('submit', submitDeposit);
+    
+    // Withdrawal
+    document.getElementById('withdraw-btn').addEventListener('click', () => {
+        document.getElementById('available-balance').textContent = formatCurrency(userProfile.wallet_balance);
+        showModal('withdraw-modal');
+    });
+    document.getElementById('withdraw-form').addEventListener('submit', submitWithdrawal);
+    
+    // Modal close buttons
+    document.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const modal = e.target.closest('.modal');
+            closeModal(modal.id);
+        });
+    });
+    
+    // Close modals on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target.id);
+        }
+    });
+}
+
+    </script>
+    
+</body>
+</html>
