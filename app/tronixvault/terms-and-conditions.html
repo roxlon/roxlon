@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Tronix Vault | Terms and Conditions</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0B0E11;
+      color: #E9ECF0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* subtle grid background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #1A1D23; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3C4049; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #F0B90B; }
+
+    .terms-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1.5rem 2rem;
+    }
+
+    /* card style matching dashboard */
+    .terms-card {
+      background: #14171D;
+      border: 1px solid #23262E;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+
+    /* header with logo */
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid #2A2E38;
+      padding-bottom: 1.2rem;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.3px;
+      color: #F0B90B;
+    }
+    .logo span { color: #FFFFFF; }
+    .back-link {
+      background: #1E2128;
+      border: 1px solid #3C4049;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      color: #D1D6E0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-link:hover {
+      border-color: #F0B90B;
+      color: #F0B90B;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #FFFFFF 0%, #E9ECF0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .last-updated {
+      color: #848B9A;
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
+      border-left: 3px solid #F0B90B;
+      padding-left: 1rem;
+    }
+
+    /* typography */
+    .terms-content h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1.8rem 0 1rem 0;
+      color: #F0B90B;
+    }
+    .terms-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.4rem 0 0.7rem 0;
+      color: #D1D6E0;
+    }
+    .terms-content p {
+      margin-bottom: 1rem;
+      color: #B9C0CE;
+    }
+    .terms-content ul, .terms-content ol {
+      margin: 0.8rem 0 1.2rem 1.8rem;
+      color: #B9C0CE;
+    }
+    .terms-content li {
+      margin-bottom: 0.4rem;
+    }
+    .legal-note {
+      background: #0F1217;
+      border-left: 4px solid #F0B90B;
+      padding: 1.2rem 1.5rem;
+      border-radius: 16px;
+      margin: 2rem 0 1rem;
+      font-size: 0.85rem;
+    }
+    hr {
+      border-color: #2A2E38;
+      margin: 1.5rem 0;
+    }
+    .badge-gold {
+      color: #F0B90B;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .terms-container {
+        padding: 1rem;
+        margin: 1rem auto;
+      }
+      .terms-card {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .terms-content h2 {
+        font-size: 1.3rem;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .terms-card {
+        padding: 1.2rem;
+      }
+      .logo-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #5F6675;
+    }
+    a {
+      color: #F0B90B;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="terms-container">
+  <div class="terms-card">
+    <div class="logo-bar">
+      <div class="logo">TRONIX<span>VAULT</span></div>
+      <a href="javascript:history.back()" class="back-link"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+
+    <h1>Terms &amp; Conditions</h1>
+    <div class="last-updated">📅 Effective Date: April 1, 2025 | Last Revised: April 15, 2026</div>
+
+    <div class="terms-content">
+      <p>Welcome to <strong class="badge-gold">Tronix Vault</strong> ("Platform", "we", "our", "us"). These Terms and Conditions constitute a legally binding agreement between you (“User”, “Trader”, “Member”) and Tronix Vault regarding your access to and use of the trading dashboard, deposit/withdrawal services, referral program, live sessions, and any related features (collectively, the “Services”). By accessing, registering, or using the Platform, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, you must immediately discontinue use.</p>
+
+      <h2>1. Eligibility & Account Registration</h2>
+      <p>1.1 You must be at least 18 years old and have full legal capacity to enter into binding agreements. By signing up, you represent that all information provided (including WhatsApp number, email, identity details) is accurate, current, and complete.</p>
+      <p>1.2 One account per natural person. Multiple registrations, bots, or fraudulent identities are strictly prohibited. Any attempt to manipulate referral bonuses or trade results will lead to permanent suspension.</p>
+      <p>1.3 We reserve the right to decline any registration or to disable any account without prior notice if we suspect violation of applicable laws or our internal policies.</p>
+
+      <h2>2. Trading & Financial Risks</h2>
+      <p>2.1 Tronix Vault provides a simulated/educational environment along with real-investment instruments based on user decisions. Past performance does not guarantee future results. All trading involves significant risk of loss of capital.</p>
+      <p>2.2 You acknowledge that trading in financial markets (including crypto or forex derivatives as offered via our partnered liquidity) carries high risk, and you may lose your entire invested amount. You should never trade with funds you cannot afford to lose.</p>
+      <p>2.3 Tronix Vault does not provide personal investment advice. Any analysis, signals, or educational content shared via the dashboard, live sessions, or Telegram/WhatsApp groups is for informational purposes only and should not be considered financial advice.</p>
+      <p>2.4 Profits, losses, referral earnings, and wallet balances displayed on the dashboard are calculated based on internal ledgers and trade execution reports. In case of any technical discrepancy, our decision (supported by database logs) shall be final.</p>
+
+      <h2>3. Deposits & Withdrawals</h2>
+      <p>3.1 <strong class="badge-gold">Minimum deposit:</strong> Rs. 3,500 (or equivalent in stablecoin where applicable). All deposits must be made through approved bank transfers, UPI, or authorized gateways. Third-party deposits are not accepted; the name on the bank account must match the registered user name.</p>
+      <p>3.2 <strong class="badge-gold">Withdrawal policy:</strong> You must achieve a minimum trade volume of Rs. 2,000 (aggregate sum of executed trades) to become eligible for withdrawal. This rule protects against bonus abuse and ensures active trading participation. Withdrawal requests are processed within 2–5 business days after internal verification.</p>
+      <p>3.3 Tronix Vault reserves the right to temporarily hold withdrawals in case of suspected money laundering, fraud, or dispute. Additional KYC documentation may be requested, including PAN card, Aadhaar, or proof of address.</p>
+      <p>3.4 Deposit receipts (transaction ID + payment proof) must be uploaded correctly. Any fake or doctored receipt will lead to immediate account termination and forfeiture of funds.</p>
+
+      <h2>4. Referral Program Terms</h2>
+      <p>4.1 Referral rewards are credited when a referred user completes onboarding, makes a qualifying deposit (≥ Rs. 3,500), and achieves minimum trade volume of Rs. 1,000. The referring user earns a commission based on active structure – standard rates are displayed inside the dashboard.</p>
+      <p>4.2 Self-referral, fake accounts, incentivized referrals without genuine trading activity are forbidden. We reserve the right to claw back any referral earnings obtained through fraudulent actions.</p>
+      <p>4.3 The referral code is unique and non-transferable. Sharing codes on public spam channels may result in revocation of referral privileges.</p>
+
+      <h2>5. Live Sessions & Communication</h2>
+      <p>5.1 Zoom meetings and live trading sessions are offered as a value-added service. Session links are confidential and intended only for verified dashboard users. Recording or redistributing session content is strictly forbidden and may lead to account termination.</p>
+      <p>5.2 Tronix Vault may send transactional emails, WhatsApp notifications, and announcements regarding trades, withdrawals, or platform updates. You can opt-out of marketing messages but not essential service communications.</p>
+
+      <h2>6. Prohibited Activities</h2>
+      <p>You agree NOT to:</p>
+      <ul>
+        <li>Use any automated script, bot, or exploit to manipulate trade outcomes, referral statistics, or any dashboard mechanism.</li>
+        <li>Attempt to access other user accounts, private keys, or sensitive data.</li>
+        <li>Post defamatory, illegal, or harmful content within any community channel related to Tronix Vault.</li>
+        <li>Reverse engineer, decompile, or copy any part of the platform’s frontend or backend logic.</li>
+        <li>Engage in arbitrage, wash trading, or any activity designed to artificially inflate trading volume.</li>
+      </ul>
+
+      <h2>7. Account Suspension & Termination</h2>
+      <p>7.1 We may suspend or terminate your account immediately if you violate these Terms, engage in fraudulent transactions, or if required by law enforcement. In case of termination due to breach, any remaining wallet balance may be forfeited.</p>
+      <p>7.2 You may close your account at any time by contacting support. After closure, pending withdrawals will be processed after a standard 7-day security hold period.</p>
+      <p>7.3 Inactive accounts (no login for 180+ days) may be archived; after 1 year of inactivity, administrative fees may apply.</p>
+
+      <h2>8. Limitation of Liability & Disclaimers</h2>
+      <p>8.1 Tronix Vault is provided on an "AS IS" and "AS AVAILABLE" basis. We do not warrant that the platform will be uninterrupted, error-free, or free from harmful components.</p>
+      <p>8.2 To the maximum extent permitted by law, Tronix Vault, its directors, employees, or partners shall not be liable for any indirect, incidental, consequential, or punitive damages, including loss of profits, data, or reputation, arising from your use of the platform.</p>
+      <p>8.3 In no event shall our total liability exceed the amount of fees paid by you (if any) to Tronix Vault during the 6 months preceding the claim.</p>
+
+      <h2>9. Data Privacy & Security</h2>
+      <p>Your personal information (email, WhatsApp, transaction details) is processed in accordance with our <strong>Privacy Policy</strong>, which is incorporated by reference. We use Supabase infrastructure and industry-standard encryption. You are responsible for maintaining the confidentiality of your authentication method (Google OAuth) and any device used to access the dashboard.</p>
+      <p>For any data deletion request, contact us at <a href="mailto:contactroxlon@gmail.com">contactroxlon@gmail.com</a>. However, we may retain certain transactional records as required by tax or regulatory obligations.</p>
+
+      <h2>10. Amendments</h2>
+      <p>We reserve the right to update or modify these Terms at any time. Material changes will be communicated via email or a prominent notice on the dashboard. Continued use of the platform after any modification constitutes acceptance of the revised Terms. It is your responsibility to review this page periodically.</p>
+
+      <hr />
+
+      <h2>11. Contact Information</h2>
+      <p>For any questions regarding these Terms and Conditions, withdrawal disputes, or compliance issues, please reach out to our official support channel:</p>
+      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> contactroxlon@gmail.com <br>
+      <i class="fab fa-whatsapp"></i> <strong>WhatsApp Helpline:</strong> +94 72 6472 827 (business hours: Mon-Fri 10am-6pm)</p>
+
+      <p style="margin-top: 1.5rem;"><strong>© 2026 Tronix Vault | Institutional Trading Ecosystem. All rights reserved.</strong></p>
+    </div>
+  </div>
+  <div class="footer-note">
+    <i class="fas fa-shield-alt"></i> This document is an electronic record under the Information Technology Act, 2000. No signature required.
+  </div>
+</div>
+
+<!-- optional smooth back behaviour -->
+<script>
+  // provide a small helper if someone clicks back to go to the dashboard or previous page
+  document.querySelectorAll('.back-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (document.referrer && document.referrer.includes(window.location.hostname)) {
+        window.history.back();
+      } else {
+        // fallback: navigate to the index page (main dashboard)
+        window.location.href = './index.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>

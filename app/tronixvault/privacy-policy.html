@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Tronix Vault | Privacy Policy</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0B0E11;
+      color: #E9ECF0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* subtle grid overlay matching dashboard style */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #1A1D23; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb { background: #3C4049; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #F0B90B; }
+
+    .privacy-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1.5rem 2rem;
+    }
+
+    .privacy-card {
+      background: #14171D;
+      border: 1px solid #23262E;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+    }
+
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid #2A2E38;
+      padding-bottom: 1.2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.3px;
+      color: #F0B90B;
+    }
+    .logo span { color: #FFFFFF; }
+
+    .back-link {
+      background: #1E2128;
+      border: 1px solid #3C4049;
+      border-radius: 40px;
+      padding: 0.5rem 1.2rem;
+      color: #D1D6E0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-link:hover {
+      border-color: #F0B90B;
+      color: #F0B90B;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #FFFFFF 0%, #E9ECF0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .last-updated {
+      color: #848B9A;
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
+      border-left: 3px solid #F0B90B;
+      padding-left: 1rem;
+    }
+
+    .policy-content h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1.8rem 0 0.8rem 0;
+      color: #F0B90B;
+    }
+
+    .policy-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.5rem 0;
+      color: #D1D6E0;
+    }
+
+    .policy-content p {
+      margin-bottom: 0.9rem;
+      color: #B9C0CE;
+    }
+
+    .policy-content ul, .policy-content ol {
+      margin: 0.6rem 0 1rem 1.8rem;
+      color: #B9C0CE;
+    }
+
+    .policy-content li {
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-box {
+      background: #0F1217;
+      border-left: 4px solid #F0B90B;
+      padding: 1.2rem 1.5rem;
+      border-radius: 16px;
+      margin: 1.8rem 0;
+      font-size: 0.9rem;
+    }
+
+    hr {
+      border-color: #2A2E38;
+      margin: 1.5rem 0;
+    }
+
+    .badge-gold {
+      color: #F0B90B;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .privacy-container {
+        padding: 1rem;
+        margin: 1rem auto;
+      }
+      .privacy-card {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .policy-content h2 {
+        font-size: 1.3rem;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .privacy-card {
+        padding: 1.2rem;
+      }
+      .logo-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #5F6675;
+    }
+
+    a {
+      color: #F0B90B;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .consent-note {
+      background: #1A1D24;
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+      font-weight: 500;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="privacy-container">
+  <div class="privacy-card">
+    <div class="logo-bar">
+      <div class="logo">TRONIX<span>VAULT</span></div>
+      <a href="javascript:history.back()" class="back-link"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <div class="last-updated">🔒 Effective: April 1, 2025 | Last Revised: April 15, 2026</div>
+
+    <div class="policy-content">
+      <p>At <strong class="badge-gold">Tronix Vault</strong> ("Platform", "we", "our", "us"), your privacy is a top priority. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you access our dashboard, use trading features, deposits, withdrawals, referral system, live sessions, and associated services. By registering and continuing to use Tronix Vault, you expressly consent to the data practices described in this policy.</p>
+
+      <h2>1. Information We Collect</h2>
+      <p>The platform collects different types of information to provide secure trading, referral tracking, and financial operations:</p>
+      <ul>
+        <li><strong>Account Information:</strong> Full name, email address (via Google authentication), Google account ID, WhatsApp number, referral code usage, and signup timestamps.</li>
+        <li><strong>Payment Information:</strong> Deposit transaction IDs, amounts, payment receipts/screenshots, withdrawal bank details (bank name, account number, IFSC code, account holder name), wallet balance records, and transaction history.</li>
+        <li><strong>Trading Information:</strong> Trade history (win/loss, amounts), profit and loss records, total traded volume, referral earnings, and trading performance data.</li>
+        <li><strong>Technical & Device Information:</strong> IP address, browser type and version, device identifiers, login timestamps, activity logs, and session cookies for maintaining dashboard authentication.</li>
+        <li><strong>Communication Data:</strong> Any correspondence via support channels, WhatsApp messages related to account verification, meeting notifications, or trade updates.</li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>Your information is used strictly for legitimate platform operations, including but not limited to:</p>
+      <ul>
+        <li>Creating and managing your secure dashboard account.</li>
+        <li>Verifying deposits and processing withdrawal requests.</li>
+        <li>Maintaining accurate wallet balances and trade results.</li>
+        <li>Tracking referral relationships and calculating referral commissions.</li>
+        <li>Detecting and preventing fraudulent or abusive activities (e.g., fake receipts, referral abuse, wash trading).</li>
+        <li>Providing customer support and responding to disputes.</li>
+        <li>Improving platform features, security, and user experience.</li>
+        <li>Sending important notifications (withdrawal status, meeting updates, policy changes).</li>
+        <li>Complying with legal obligations, court orders, or regulatory requests.</li>
+      </ul>
+
+      <h2>3. WhatsApp Number Usage</h2>
+      <p>During onboarding, you must provide a valid WhatsApp number. This number is used exclusively for:</p>
+      <ul>
+        <li>Account verification & security alerts.</li>
+        <li>Time-sensitive trading session updates and Zoom meeting links.</li>
+        <li>Support communication regarding deposits, withdrawals, or technical issues.</li>
+        <li>Important platform announcements (e.g., scheduled maintenance, policy updates).</li>
+      </ul>
+      <p>We do not sell or share your WhatsApp number with third-party advertisers. You may opt out of non-essential WhatsApp messages, but you cannot opt out of critical service communications.</p>
+
+      <h2>4. Payment Verification & Receipt Handling</h2>
+      <p>To complete deposits, users are required to upload transaction IDs and payment receipts/screenshots. These documents and metadata are stored securely and used only for:</p>
+      <ul>
+        <li>Verifying that funds have been credited to the official platform account.</li>
+        <li>Preventing duplicate deposit claims or financial fraud.</li>
+        <li>Resolving disputes regarding missing deposits or transaction errors.</li>
+      </ul>
+      <p><strong>Important:</strong> Submission of fake, edited, or misleading receipts may result in immediate account suspension, forfeiture of funds, and permanent ban from the platform.</p>
+
+      <h2>5. Referral System Data</h2>
+      <p>The referral program tracks relationships between referrer and referred user based on unique referral codes. We store referral links, timestamps of successful signups, deposit thresholds met, and earned commissions. This data is used to:</p>
+      <ul>
+        <li>Calculate and credit referral earnings fairly.</li>
+        <li>Detect and prevent self-referral abuse or spammy signup patterns.</li>
+        <li>Provide transparency on referral performance inside the dashboard.</li>
+      </ul>
+
+      <h2>6. Data Protection & Security Measures</h2>
+      <p>Tronix Vault implements reasonable administrative, technical, and physical safeguards, including:</p>
+      <ul>
+        <li>Row Level Security (RLS) policies on Supabase database to restrict unauthorized access.</li>
+        <li>Encrypted HTTPS connections and secure authentication via Google OAuth 2.0.</li>
+        <li>Limited internal access to sensitive user data (only authorized personnel).</li>
+        <li>Regular security reviews and activity logging.</li>
+      </ul>
+      <p>However, no method of transmission over the internet is 100% secure. Users are responsible for protecting their own devices, Google account credentials, and maintaining session confidentiality.</p>
+
+      <h2>7. Third-Party Services & Integrations</h2>
+      <p>We rely on trusted third-party providers to operate the platform. These services may collect or process data according to their respective privacy policies:</p>
+      <ul>
+        <li><strong>Google (OAuth):</strong> Used for secure login/authentication. We receive your email address and basic profile info as per Google's consent screen.</li>
+        <li><strong>Supabase:</strong> Our primary backend (database, authentication, realtime) – stores encrypted user profiles, trades, deposits, and withdrawals.</li>
+        <li><strong>Zoom:</strong> Provides live trading sessions. Meeting links and participant information may be subject to Zoom's privacy policy.</li>
+        <li><strong>Storage service (Supabase Storage):</strong> Used to store payment receipts and proof documents with restricted access.</li>
+      </ul>
+      <p>We do not sell or rent your personal data to any external marketing company.</p>
+
+      <h2>8. Cookies & Local Storage</h2>
+      <p>Our dashboard uses browser local storage and minimal session cookies to:</p>
+      <ul>
+        <li>Keep you authenticated across page reloads.</li>
+        <li>Remember user preferences (e.g., UI state).</li>
+        <li>Improve performance and reduce repeated logins.</li>
+      </ul>
+      <p>You may clear local storage or disable cookies via browser settings; however, certain dashboard features may not function correctly without them.</p>
+
+      <h2>9. Information Sharing & Disclosure</h2>
+      <p>We do not sell, trade, or rent your personal information to third parties. Exceptions where we may share limited information:</p>
+      <ul>
+        <li><strong>Legal compliance:</strong> If required by subpoena, court order, or governmental regulation.</li>
+        <li><strong>Fraud investigations:</strong> To prevent financial crimes, identity theft, or terms violations.</li>
+        <li><strong>Platform security:</strong> To protect the rights, property, or safety of Tronix Vault, our users, or the public.</li>
+        <li><strong>Service providers:</strong> Only trusted vendors who help operate the platform (e.g., cloud hosting, support tools) under strict confidentiality agreements.</li>
+      </ul>
+
+      <h2>10. User Responsibilities</h2>
+      <p>To maintain a secure environment, you agree to:</p>
+      <ul>
+        <li>Provide accurate, up-to-date information during registration and KYC.</li>
+        <li>Keep your Google account credentials and device access secure at all times.</li>
+        <li>Not share your account, referral code, or dashboard session with unauthorized third parties.</li>
+        <li>Immediately notify support of any suspicious activity, unauthorized transaction, or potential breach.</li>
+      </ul>
+
+      <h2>11. Data Retention</h2>
+      <p>We retain user data as long as your account is active or as necessary to provide services, comply with legal obligations, resolve disputes, and enforce agreements. Even after account deletion, limited records (e.g., transaction history for audit, fraud prevention) may be retained securely for a legally required period (typically up to 5–7 years for financial records). Deletion requests can be sent to <a href="mailto:contactroxlon@gmail.com">contactroxlon@gmail.com</a>, subject to regulatory constraints.</p>
+
+      <h2>12. Account Suspension & Investigation Access</h2>
+      <p>If the platform detects suspicious activity, we may temporarily freeze access, restrict withdrawals, and review internal data for investigation. In such cases, your information will be used solely for determining potential violations of our Terms. Account holders will be notified whenever possible, unless prohibited by law or safety concerns.</p>
+
+      <h2>13. Children's Privacy</h2>
+      <p>Tronix Vault is strictly intended for individuals aged 18 years or older. We do not knowingly collect personal information from minors. If we discover that a user is under 18, the account will be terminated immediately and any balance refunded after verification. Parents or guardians may contact us to report concerns.</p>
+
+      <h2>14. Changes to This Privacy Policy</h2>
+      <p>We reserve the right to update this Privacy Policy from time to time. Modifications become effective immediately upon posting on the platform. Material changes will be notified via email, dashboard notification, or WhatsApp message. Your continued use of Tronix Vault after any update signifies acceptance of the revised policy. It is your responsibility to review this page periodically.</p>
+
+      <h2>15. Contact & Support</h2>
+      <p>For any privacy-related inquiries, data access requests, or to report a potential breach, please reach out:</p>
+      <p>
+        <i class="fas fa-envelope"></i> <strong>Email (Privacy):</strong> contactroxlon@gmail.com<br>
+        <i class="fab fa-whatsapp"></i> <strong>WhatsApp (admin):</strong> +94 72 6472 827 (Mon-Fri, 10am-6pm IST)<br>
+      </p>
+
+      <div class="highlight-box">
+        <i class="fas fa-shield-alt" style="margin-right: 10px; color:#F0B90B;"></i>
+        <strong>Consent acknowledgment:</strong> By registering and accessing Tronix Vault, you explicitly consent to the collection, processing, storage, and sharing of your information as described in this Privacy Policy. You also confirm that you understand the risks associated with online trading and that your WhatsApp number will be used for essential platform communications.
+      </div>
+
+      <hr />
+
+      <div class="consent-note">
+        <i class="fas fa-check-circle" style="color:#2ECC71;"></i> This Privacy Policy forms an integral part of the Tronix Vault Terms & Conditions. Continued use of the platform constitutes acceptance of both documents.
+      </div>
+
+      <p style="margin-top: 1.8rem; font-size: 0.8rem; text-align: center; color:#6F7685;">
+        © 2026 Tronix Vault — Institutional Dashboard. All rights reserved.
+      </p>
+    </div>
+  </div>
+  <div class="footer-note">
+    <i class="fas fa-lock"></i> Trust & transparency are our foundation. Last audit: April 2026.
+  </div>
+</div>
+
+<script>
+  // smart back navigation: if referrer is internal, go back; else redirect to index
+  document.querySelectorAll('.back-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (document.referrer && document.referrer.includes(window.location.hostname)) {
+        window.history.back();
+      } else {
+        window.location.href = './index.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
